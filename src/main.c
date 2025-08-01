@@ -10,7 +10,7 @@ static int on_file_added(ddb_fileadd_data_t *data,void *user_data){
 		struct timespec t;
 		timespec_get(&t,TIME_UTC);
 		char buffer[48]; //YYYY-MM-DD HH:MM:SS.xxxxxxxxx
-		size_t len = strftime(buffer,sizeof(buffer),"%Y-%m-%d %H:%M:%S.",gmtime(&t.tv_sec));
+		size_t len = strftime(buffer,sizeof(buffer),"%Y-%m-%d %H:%M:%S.",localtime(&t.tv_sec));
 		snprintf(buffer+len,sizeof(buffer)-len,"%09ld",t.tv_nsec);
 
 		deadbeef->pl_lock();
